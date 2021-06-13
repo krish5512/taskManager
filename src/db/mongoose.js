@@ -1,34 +1,33 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
     useNewUrlParser: true,
     useCreateIndex: true
 });
 
-const taskSchema = {
-    description: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    completed: {
-        type: Boolean,
-        default : false,
-    }
-};
+// const taskSchema = {
+//     description: {
+//         type: String,
+//         required: true,
+//         trim: true,
+//     },
+//     completed: {
+//         type: Boolean,
+//         default : false,
+//     }
+// };
 
-const Task = mongoose.model('Task', taskSchema)
-const demo = new Task({
-    description: 'task 5',
-    completed: false
-});
+// const Task = mongoose.model('Task', taskSchema)
+// const demo = new Task({
+//     description: 'task 5',
+//     completed: false
+// });
 
-demo.save().then((result) => {
-    console.log('Success', result)
-}).catch((error) => {
-    console.log('Error', error)
-})
+// demo.save().then((result) => {
+//     console.log('Success', result)
+// }).catch((error) => {
+//     console.log('Error', error)
+// })
 
 
 
