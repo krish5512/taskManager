@@ -12,7 +12,19 @@ app.post("/post", (req, res) => {
   console.log("Connected to React Hello Krishna");
   res.redirect("/");
 });
+// methods written to read data from DB
+app.get('/users', (req, res) => {
+  User.find({}).then((users) => {
+    res.send({
+      users
+    })
+  }).catch((e) => {
 
+  })
+})
+
+
+// methods written to write data to DB
 app.post('/users', (req, res) => {
   const user = new User(req.body);
   user.save().then(() => {
