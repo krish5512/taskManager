@@ -19,11 +19,12 @@ app.get('/users', (req, res) => {
       users
     })
   }).catch((e) => {
-
+    res.status(500).send()
   })
 })
-
-
+app.get('users/:id',(req,res) => {
+  console.log(req.params)
+})
 // methods written to write data to DB
 app.post('/users', (req, res) => {
   const user = new User(req.body);
