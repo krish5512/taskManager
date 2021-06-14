@@ -48,17 +48,17 @@ const User = mongoose.model('User', {
         default: 0
     }
 })
-const me = new User({
-    name: 'Krishna',
-    email: 'krk@gmail.com',
-    password: 'adfhasjk',
-    age: 25
-})
+// const me = new User({
+//     name: 'Krishna',
+//     email: 'krk@gmail.com',
+//     password: 'adfhasjk',
+//     age: 25
+// })
 
-me.save().then((result) => {
-    console.log('Success', result)
-}).catch((error) => {
-    console.log('error', error)
-})
+// me.save().then((result) => {
+//     console.log('Success', result)
+// }).catch((error) => {
+//     console.log('error', error)
+// })
 
 module.exports = User;
