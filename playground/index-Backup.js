@@ -14,72 +14,64 @@ app.post("/post", (req, res) => {
 });
 // Methods to read data from DB
 // User Related
-app.get('/users', async (req, res) => {
-  try {
-    const users = await User.find({});
+app.get('/users', (req, res) => {
+  User.find({}).then((users) => {
     res.send({
       users
     })
-  } catch (e) {
-    res.status(500).send(e);
-  }
+  }).catch((e) => {
+    res.status(500).send()
+  })
 });
-app.get('/users/:id', async (req, res) => {
+app.get('/users/:id', (req, res) => {
   const _id = req.params.id;
-  try {
-    const user = await User.findById(_id);
+  User.findById(_id).then((user) => {
     if (!user) {
       return res.status(404).send();
     }
     res.send(user)
-  } catch (e) {
+  }).catch((e) => {
     res.status(500).send(e)
-  }
+  })
 });
-
 // Task Related 
-app.get('/tasks', async (req, res) => {
-  try {
-    const tasks = await Task.find({});
+app.get('/tasks', (req, res) => {
+  Task.find({}).then((tasks) => {
     res.send(tasks);
-  } catch (e) {
+  }).catch((e) => {
     res.status(500).send(e);
-  }
+  })
 })
-app.get('/tasks/:id', async (req, res) => {
+app.get('/tasks/:id', (req, res) => {
   const _id = req.params.id;
-  try {
-    const task = await Task.findById(_id);
+  Task.findById(_id).then((task) => {
     if (!task) {
       return res.status(404).send()
     }
     res.send(task)
-  } catch (e) {
+  }).catch((e) => {
     res.status(500).send(e)
-  }
+  })
 })
 // Methods to write data into DB
 // User Related
-app.post('/users', async (req, res) => {
+app.post('/users', (req, res) => {
   const user = new User(req.body);
-  try {
-    await user.save();
-    res.status(201).send(user)
-  } catch (e) {
+  user.save().then(() => {
+    res.send(user)
+  }).catch((e) => {
     res.status(400).send(e);
-  }
-
+  })
 })
 
 // Task Related
-app.post('/tasks', async (req, res) => {
+app.post('/tasks', (req, res) => {
   const task = new Task(req.body);
-  try {
-    await task.save();
+  task.save().then(() => {
     res.status(201).send(task)
-  } catch (e) {
+  }).catch((e) => {
     res.status(400).send(e);
-  }
+  })
 })
 
 
