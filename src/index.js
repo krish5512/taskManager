@@ -66,7 +66,7 @@ app.post('/users', async (req, res) => {
     await user.save();
     res.status(201).send(user)
   } catch (e) {
-    res.status(400).send(e);
+    res.status(500).send(e);
   }
 
 })
@@ -77,10 +77,10 @@ app.post('/tasks', async (req, res) => {
     await task.save();
     res.status(201).send(task)
   } catch (e) {
-    res.status(400).send(e);
+    res.status(500).send(e);
   }
 })
-// Mehtods to udpate and patch the data in DB
+// Mehtods to update and patch the data in DB
 // Users Related
 app.patch('/users/:id', async (req, res) => {
   const updates = Object.keys(req.body)
@@ -97,7 +97,7 @@ app.patch('/users/:id', async (req, res) => {
       }
       res.send(user);
     } catch (e) {
-      res.status(400).send(e)
+      res.status(500).send(e)
     }
   } else {
     return res.status(400).send({
@@ -121,7 +121,7 @@ app.patch('/tasks/:id', async (req, res) => {
       }
       res.send(task)
     } catch (e) {
-      res.status(400).send(res)
+      res.status(500).send(res)
     }
   } else {
     return res.status(400).send({
@@ -129,6 +129,35 @@ app.patch('/tasks/:id', async (req, res) => {
     })
   }
 })
+// Mehtods to delete the data in DB
+// Users Related
+app.delete('/users/:id', async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).send();
+    }
+    res.send(user)
+  } catch (e) {
+    res.status(500).send(res)
+  }
+})
+
+
+// Task Related
+app.delete('/tasks/:id', async (req, res) => {
+  try {
+    const task = await Task.findByIdAndDelete(req.params.id);
+    if (!task) {
+      return res.status(404).send();
+    }
+    res.send(task)
+  } catch (e) {
+    res.status(500).send(res)
+  }
+})
+
+
 /*******************************************************/
 app.listen(port, () => {
   console.log('The server is up at ' + port)
