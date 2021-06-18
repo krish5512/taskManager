@@ -29,13 +29,16 @@ router.get('/users/:id', async (req, res) => {
     }
 });
 router.post('/users', async (req, res) => {
+    const user = new User(req.body);
+    console.log({
+        user
+    })
     try {
         await user.save();
         res.status(201).send(user)
     } catch (e) {
         res.status(500).send(e);
     }
-
 })
 router.patch('/users/:id', async (req, res) => {
     const updates = Object.keys(req.body)

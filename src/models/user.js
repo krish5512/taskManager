@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
                 throw new Error('Password cannot be `password`')
             }
         },
-        
+
     },
     age: {
         type: Number,
@@ -44,19 +44,22 @@ const userSchema = new mongoose.Schema({
         },
         default: 0
     }
-})
+});
 
-userSchema.pre('save' , async function (next) {
+userSchema.pre('save', async function (next) {
     const user = this;
-    if(user.isModified('password'))
-    {
-        user.password = await bcrypt.hash(password, 8);it
+    console.log({user});
+    console.log(user.isModified('password'))
+    if (user.isModified('password')) {
+        user.password = await bcrypt.hash(user.password, 8);
     }
-    console.log('just before saving')
-    next()
+    console.log('just before saving');
+    next();
 })
 
-const User = mongoose.model('User', )
+const User = mongoose.model('User', userSchema);
+
+
 // const me = new User({
 //     name: 'Krishna',
 //     email: 'krk@gmail.com',
