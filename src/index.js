@@ -13,6 +13,22 @@ app.post("/post", (req, res) => {
   console.log("Connected to React Hello Krishna");
   res.redirect("/");
 });
+
+// const myFucntion = async () => {
+//   const password = 'Red1234';
+
+//   console.log({
+//     password,
+//     hashedPassword
+//   });
+
+//   const isMatch = await bcrypt.compare('Red1234', hashedPassword);
+//   console.log({
+//     isMatch
+//   })
+// }
+
+// myFucntion()
 /*******************************************************/
 app.listen(port, () => {
   console.log('The server is up at ' + port)

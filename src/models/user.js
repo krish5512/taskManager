@@ -1,12 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs')
 
-// mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
-//     useNewUrlParser: true,
-//     useCreateIndex: true
-// });
-
-const User = mongoose.model('User', {
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -35,7 +31,8 @@ const User = mongoose.model('User', {
             } else if (validator.equals(value.toLowerCase(), 'password')) {
                 throw new Error('Password cannot be `password`')
             }
-        }
+        },
+        
     },
     age: {
         type: Number,
@@ -48,6 +45,18 @@ const User = mongoose.model('User', {
         default: 0
     }
 })
+
+userSchema.pre('save' , async function (next) {
+    const user = this;
+    if(user.isModified('password'))
+    {
+        user.password = await bcrypt.hash(password, 8);it
+    }
+    console.log('just before saving')
+    next()
+})
+
+const User = mongoose.model('User', )
 // const me = new User({
 //     name: 'Krishna',
 //     email: 'krk@gmail.com',
