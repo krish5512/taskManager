@@ -1,22 +1,24 @@
 const express = require('express')
 const router = new express.Router();
-const User = require('../models/user')
+const User = require('../models/user');
+const auth = require('../middleware/auth');
 const bcrypt = require('bcryptjs');
 const {
     findByIdAndUpdate
 } = require('../models/user');
 
-router.get('/users', async (req, res) => {
-    try {
-        const users = await User.find({});
-        res.send({
-            users
-        })
-    } catch (e) {
-        res.status(500).send(e);
-    }
+router.get('/users/me', auth, async (req, res) => {
+    // try {
+    //     const users = await User.find({});
+    //     res.send({
+    //         users
+    //     })
+    // } catch (e) {
+    //     res.status(500).send(e);
+    // }
+    res.send(req.user)
 });
-router.get('/users/:id', async (req, res) => {
+router.get('/users/:id', auth, async (req, res) => {
     const _id = req.params.id;
     try {
         const user = await User.findById(_id);
@@ -55,7 +57,7 @@ router.post('/users/login', async (req, res) => {
         res.status(400).send();
     }
 })
-router.patch('/users/:id', async (req, res) => {
+router.patch('/users/:id', auth, async (req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdate = ['name', 'email', 'age', 'password'];
     const checkVali = updates.every(update => allowedUpdate.includes(update));
@@ -79,7 +81,7 @@ router.patch('/users/:id', async (req, res) => {
         })
     }
 })
-router.delete('/users/:id', async (req, res) => {
+router.delete('/users/:id', auth, async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);
         if (!user) {
