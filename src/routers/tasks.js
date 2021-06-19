@@ -45,10 +45,10 @@ router.patch('/tasks/:id', async (req, res) => {
     const checkValidation = updates.every(update => allowedUpdate.includes(update));
     if (checkValidation) {
         try {
-            const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
-                new: true,
-                runValidators: true
-            });
+            // const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+            //     new: true,
+            //     runValidators: true
+            // });
             const task = await Task.findByIdAndUpdate(req.params.id);
             updates.forEach((update) => user[update] = req.body[update]);
             await task.save();
