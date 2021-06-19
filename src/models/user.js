@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // Hash the plain text password
 const userSchema = new mongoose.Schema({
@@ -45,7 +46,13 @@ const userSchema = new mongoose.Schema({
             }
         },
         default: 0
-    }
+    },
+    tokens: [{
+        token: {
+            type: String,
+            required: true,
+        }
+    }]
 });
 
 userSchema.statics.findByCredentials = async (email, password) => {
@@ -63,17 +70,25 @@ userSchema.statics.findByCredentials = async (email, password) => {
     return user;
 }
 
+userSchema.methods.generateAuthToken = async function () {
+    const user = this;
+    const token = jwt.sign({
+        _id: user._id.toString()
+    }, 'thisIsMyNewCourse', {
+        expiresIn: '1 seconds'
+    });
+    user.tokens = user.tokens.concat({
+        token
+    });
+    await user.save();
+    return token;
+}
 
 userSchema.pre('save', async function (next) {
     const user = this;
-    console.log({
-        user
-    });
-    console.log(user.isModified('password'))
     if (user.isModified('password')) {
         user.password = await bcrypt.hash(user.password, 8);
     }
-    console.log('just before saving');
     next();
 })
 

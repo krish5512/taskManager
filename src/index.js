@@ -14,21 +14,21 @@ app.post("/post", (req, res) => {
   res.redirect("/");
 });
 
-// const myFucntion = async () => {
-//   const password = 'Red1234';
+const jwt = require('jsonwebtoken');
+const myFucntion = async () => {
+  const token = jwt.sign({
+    _id: 'abc123'
+  }, 'thisIsMyNewCourse',{
+    expiresIn : '1 seconds'
+  });
+  console.log({
+    token
+  });
+  console.log('data',jwt.verify(token, 'thisIsMyNewCourse'));
 
-//   console.log({
-//     password,
-//     hashedPassword
-//   });
+}
 
-//   const isMatch = await bcrypt.compare('Red1234', hashedPassword);
-//   console.log({
-//     isMatch
-//   })
-// }
-
-// myFucntion()
+myFucntion()
 /*******************************************************/
 app.listen(port, () => {
   console.log('The server is up at ' + port)
