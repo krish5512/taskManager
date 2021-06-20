@@ -32,16 +32,16 @@ app.post("/post", (req, res) => {
   res.redirect("/");
 });
 
-const jwt = require('jsonwebtoken');
-const myFucntion = async () => {
-  const token = jwt.sign({
-    _id: 'abc123'
-  }, 'thisIsMyNewCourse', {
-    expiresIn: '1 seconds'
-  });
-}
+// const jwt = require('jsonwebtoken');
+// const myFucntion = async () => {
+//   const token = jwt.sign({
+//     _id: 'abc123'
+//   }, 'thisIsMyNewCourse', {
+//     expiresIn: '1 seconds'
+//   });
+// }
 
-myFucntion()
+// myFucntion()
 /*******************************************************/
 app.listen(port, () => {
   console.log('The server is up at ' + port)
