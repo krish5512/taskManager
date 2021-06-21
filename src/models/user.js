@@ -54,7 +54,7 @@ const userSchema = new mongoose.Schema({
         }
     }]
 });
-
+// this is on actual and uppercase User model 
 userSchema.statics.findByCredentials = async (email, password) => {
     const user = await User.findOne({
         email
@@ -69,7 +69,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
     }
     return user;
 }
-
+// this is on instances and individual user
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
     const token = jwt.sign({
@@ -81,7 +81,20 @@ userSchema.methods.generateAuthToken = async function () {
     await user.save();
     return token;
 }
-
+// this converts the user object to json so that it can be manipulated
+userSchema.methods.toJSON = function () {
+    const user = this;
+    const userObject = user.toObject();
+    console.log({
+        userObject
+    })
+    delete userObject.password;
+    delete userObject.tokens;
+    console.log({
+        userObject
+    })
+    return userObject;
+}
 userSchema.pre('save', async function (next) {
     const user = this;
     if (user.isModified('password')) {
