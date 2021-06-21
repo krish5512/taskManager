@@ -79,3 +79,19 @@ app.post('/tasks', (req, res) => {
 app.listen(port, () => {
   console.log('The server is up at ' + port)
 })
+
+
+
+
+// delete user using ID
+router.delete('/users/me', auth, async (req, res) => {
+  try {
+      const user = await User.findByIdAndDelete(req.params.id);
+      if (!user) {
+          return res.status(404).send();
+      }
+      res.send(user)
+  } catch (e) {
+      res.status(500).send(res)
+  }
+})
