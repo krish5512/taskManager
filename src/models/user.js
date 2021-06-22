@@ -54,6 +54,15 @@ const userSchema = new mongoose.Schema({
         }
     }]
 });
+// Virtual Property is used to create relationship between 2 entities and is not a database property 
+// and allow to set virtual attribute
+userSchema.virtual('tasks', {
+    ref: 'Task',
+    localField: '_id',
+    foreignField: 'owner',
+    /* This is used to find the field on both collection to create a relation*/
+})
+
 // this is on actual and uppercase User model 
 userSchema.statics.findByCredentials = async (email, password) => {
     const user = await User.findOne({

@@ -9,11 +9,17 @@ const taskSchema = {
     },
     completed: {
         type: Boolean,
-        default : false,
+        default: false,
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref : 'User'
     }
 };
 
-const Task = mongoose.model('Task', taskSchema)
+const Task = mongoose.model('Task', taskSchema);
+module.exports = Task
 // const demo = new Task({
 //     description: 'task 5',
 //     completed: false
@@ -24,5 +30,3 @@ const Task = mongoose.model('Task', taskSchema)
 // }).catch((error) => {
 //     console.log('Error', error)
 // })
-
-module.exports = Task
