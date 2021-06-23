@@ -53,6 +53,8 @@ const userSchema = new mongoose.Schema({
             required: true,
         }
     }]
+},{
+    timestamps : true
 });
 // Virtual Property is used to create relationship between 2 entities and is not a database property 
 // and allow to set virtual attribute

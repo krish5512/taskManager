@@ -7,9 +7,13 @@ mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
 });
 
 // Drop Database
-// mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api',function () {
+// mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', function () {
 //     mongoose.connection.db.dropDatabase();
-//     });
+// }, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true
+// });
 
 // const taskSchema = {
 //     description: {
