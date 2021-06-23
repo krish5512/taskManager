@@ -4,6 +4,7 @@ const auth = require('../middleware/auth')
 const Task = require('../models/task')
 
 // Get /tasks?completed=true
+// Get /tasks?limit=10&skip20
 router.get('/tasks', auth, async (req, res) => {
     const match = {};
     if (req.query.completed === 'true') {
@@ -12,7 +13,14 @@ router.get('/tasks', auth, async (req, res) => {
     try {
         await req.user.populate({
             path: 'tasks',
-            match
+            match,
+            options: {
+                limit: parseInt(req.query.limit),
+                /*this is being used to set the number of result limit to be shown*/
+                skip: parseInt(req.query.skip)
+                /*this is being used to skip result count to be shown to the next set*/
+
+            }
         }).execPopulate();
         res.send(req.user.tasks);
     } catch (e) {
