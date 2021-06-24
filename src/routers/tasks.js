@@ -3,12 +3,19 @@ const router = new express.Router();
 const auth = require('../middleware/auth')
 const Task = require('../models/task')
 
+// Pagination of the tasks query
 // Get /tasks?completed=true
 // Get /tasks?limit=10&skip20
+// Get /tasks?sortBy=createdAt:asc 
 router.get('/tasks', auth, async (req, res) => {
     const match = {};
+    const sort = {}
     if (req.query.completed === 'true') {
         match.completed = req.query.completed === 'true';
+    }
+    if (req.query.sortBy) {
+        const parts = req.query.sortBy.split(':');
+        sort[parts[0]] = parts[1] === 'desc' ? -1 : 1;
     }
     try {
         await req.user.populate({
@@ -17,9 +24,9 @@ router.get('/tasks', auth, async (req, res) => {
             options: {
                 limit: parseInt(req.query.limit),
                 /*this is being used to set the number of result limit to be shown*/
-                skip: parseInt(req.query.skip)
+                skip: parseInt(req.query.skip),
                 /*this is being used to skip result count to be shown to the next set*/
-
+                sort
             }
         }).execPopulate();
         res.send(req.user.tasks);
