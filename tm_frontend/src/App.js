@@ -85,22 +85,28 @@ const App = () => {
       {signInDiv && (
         <div>
           <div> Sign In </div>{' '}
-          <p>
+          <div className="loginDiv">
+          <label className="label">
             Email ID:{' '}
+            </label>
             <input
               type="email"
+              className="input"
               value={screenData.email}
               onChange={(e) => handleChange(e, 'email')}
             ></input>{' '}
-          </p>{' '}
-          <p>
+          </div>{' '}
+          <div>
+          <label className="label">
             Password:{' '}
+            </label>
             <input
               type="password"
+              className="input"
               value={screenData.password}
               onChange={(e) => handleChange(e, 'password')}
             ></input>{' '}
-          </p>{' '}
+         </div>{' '}
           <br />
           <button className="button" onClick={signIn}> Log In </button>{' '}
         </div>
@@ -108,38 +114,48 @@ const App = () => {
       {signUpDiv && (
         <div>
           <div> Sign Up </div>{' '}
-          <p>
-            Name:{' '}
+          <div>
+           <label className="label">Name:{' '}</label>
             <input
               type="name"
+              className="input"
               value={screenData.name}
               onChange={(e) => handleChange(e, 'name')}
             ></input>{' '}
-          </p>{' '}
-          <p>
+          </div>{' '}
+          <div>
+          <label className="label">
             Email ID:{' '}
+            </label>
             <input
               type="email"
+              className="input"
               value={screenData.email}
               onChange={(e) => handleChange(e, 'email')}
             ></input>{' '}
-          </p>{' '}
-          <p>
+          </div>{' '}
+          <div>
+          <label className="label">
             Password:{' '}
+            </label>
             <input
               type="password"
+              className="input"
               value={screenData.password}
               onChange={(e) => handleChange(e, 'password')}
             ></input>{' '}
-          </p>{' '}
-          <p>
+            </div>{' '}
+            <div>
+          <label className="label">
             Age:{' '}
+            </label>
             <input
               type="age"
+              className="input"
               value={screenData.age}
               onChange={(e) => handleChange(e, 'age')}
             ></input>{' '}
-          </p>{' '}
+            </div>{' '}
           <br />
           <button className="button" onClick={signUp}> Create Account </button>{' '}
         </div>

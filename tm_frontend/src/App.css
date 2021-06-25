@@ -3,19 +3,51 @@
 }
 
 .App-header {
-    color: #888888;
-    margin-right: 16px;
-    text-decoration: none;
-    font-size: 40px;
-    margin-bottom: 16px;
+  color: #888888;
+  margin-right: 16px;
+  text-decoration: none;
+  font-size: 40px;
+  margin-bottom: 16px;
 }
+
 .subheader {
-  color : darkblue;
+  color: darkblue;
   margin-right: 16px;
   text-decoration: none;
   font-size: 20px;
   margin-bottom: 16px;
 }
+
+
+.label {
+  display: inline-block;
+ 
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  padding: 5px 10px;
+  padding-right: 5px;
+}
+
+.input {
+  display: inline-block;
+  position: static;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+  margin-left: 40px;
+  border-radius: 0.1rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 200px;
+  height: 20px;
+  border-bottom: 0.1rem solid;
+  margin-bottom: 8px;
+  transition: all 0.3s;
+}
+
+
 
 .button {
   width: 120px;
@@ -30,10 +62,12 @@
   position: relative;
   display: inline-block;
 }
+
 .button {
   transition: all 0.3s ease;
   overflow: hidden;
 }
+
 .button:after {
   position: absolute;
   content: " ";
@@ -46,11 +80,17 @@
   -webkit-transform: scale(.1);
   transform: scale(.1);
 }
+
 .button:hover {
   color: #fff;
 }
+
 .button:hover:after {
   background: #000;
   -webkit-transform: scale(1);
   transform: scale(1);
+}
+
+.signUpDiv {
+  width: 400px;
 }
