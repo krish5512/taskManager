@@ -5,7 +5,7 @@ export const fetchUsersRequest = async req => {
         data
     } = await http({
         method: 'GET',
-        url: '',
+        url: '/users/login',
         body: {
             ...req
         }

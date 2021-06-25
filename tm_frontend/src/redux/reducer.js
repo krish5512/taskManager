@@ -12,7 +12,7 @@ export default function reduxSagaReducer(state = initialState, action) {
         case LOAD_USERS_SUCCESS: {
             return {
                 ...state,
-                data: action.data,
+                data: action.payload,
 
             }
         }

@@ -1,5 +1,5 @@
 import {
-    put,
+    call,
     takeEvery
 } from 'redux-saga/effects'
 import {
@@ -9,30 +9,24 @@ import {
     fetchUsersRequest
 } from './request'
 
-async function fetchAsync(func) {
-    const response = await func();
-    console.log({
-        response
-    })
-    if (response.ok) {
-        return await response.json();
-    }
+// async function fetchAsync(func) {
+//     const response = await func();
+//     console.log({
+//         response
+//     })
+//     if (response.ok) {
+//         return await response.json();
+//     }
 
-    throw new Error("Unexpected error!!!");
-}
+//     throw new Error("Unexpected error!!!");
+// }
 
-function* fetchUserRequestSaga() {
+function* fetchUserRequestSaga(action) {
     try {
-        const users = yield fetchAsync(fetchUsersRequest);
-        yield put({
-            type: LOAD_USERS,
-            data: users
-        });
+        const users = yield call(fetchUsersRequest, action.payload);
+        return users
     } catch (e) {
-        yield put({
-            type: LOAD_USERS,
-            error: e.message
-        });
+        throw e
     }
 }
 
