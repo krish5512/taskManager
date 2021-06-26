@@ -1,8 +1,6 @@
 import './App.css';
 import { useState } from 'react';
 import Profile from './components/profile';
-// import {connect} from 'react-redux';
-import {loadUsers} from "./redux/action";
 
 const App = () => {
   const [signInDiv, setSignInDiv] = useState(false);
@@ -61,12 +59,12 @@ const App = () => {
       password,
       email,
     });
-    const req ={
-      email , password
-    }
-    loadUsers(req,response => {
-      console.log(response)
-    })
+    // const req ={
+    //   email , password
+    // }
+    // loadUsers(req,response => {
+      // console.log(response)
+    // })
   };
 
   const signUp = () => {
