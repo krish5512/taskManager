@@ -1,6 +1,8 @@
 import './App.css';
 import { useState } from 'react';
 import Profile from './components/profile';
+import {  useDispatch } from 'react-redux';
+import  getUsers  from './redux/actions/users';
 
 const App = () => {
   const [signInDiv, setSignInDiv] = useState(false);
@@ -11,6 +13,8 @@ const App = () => {
     name: '',
     age: '',
   });
+  const dispatch = useDispatch();
+  // const users = useSelector(state => state.users);
   const handleSign = (e) => {
     if (e === 'in') {
       setSignInDiv(true);
@@ -59,12 +63,18 @@ const App = () => {
       password,
       email,
     });
-    // const req ={
-    //   email , password
-    // }
-    // loadUsers(req,response => {
-      // console.log(response)
-    // })
+    const req ={
+      email , password
+    }
+    dispatch(
+      getUsers(req,resp => {
+        if(resp)
+        {
+          console.log(resp)
+        }
+      })
+    )
+   
   };
 
   const signUp = () => {
@@ -77,6 +87,7 @@ const App = () => {
       name,
     });
   };
+
   return (
     <div className="App">
     <div className="App-header">
@@ -115,7 +126,7 @@ const App = () => {
             ></input>{' '}
          </div>{' '}
           <br />
-          <button className="button" onClick={signIn}> Log In </button>{' '}
+          <button className="button" onClick={() => signIn()}> Log In </button>{' '}
         </div>
       )}{' '}
       {signUpDiv && (
