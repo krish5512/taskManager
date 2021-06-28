@@ -3,35 +3,27 @@ import {
     put,
     takeEvery
 } from 'redux-saga/effects'
-import {
-    http
-} from 'http';
 
- async function getApi(action) {
+const getApi = async req => {
+    // const request = action.payload;
     console.log({
-        action
+        req
     })
-    const request = action.payload;
-    return await http({
-                method: 'GET',
-        url: 'http://localhost:3001/users/login',
-        body: {
-          ...request
-        }
-    });
-    // console.log({
-    //     users
-    // })
-    // return users
+    const url= '/users/login';
+    console.log({url})
+    const body =  await fetch(url,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+          },
+        body: JSON.stringify(req),
+    });  
+    return body.json()
 }
 
 function* fetchUsers(action) {
     try {
-        const users = yield call(getApi(action));
-        console.log({
-            users
-        })
-        console.log({users})
+        const users = yield call(getApi,action.payload);
         return users;
     } catch (e) {
         yield put({
