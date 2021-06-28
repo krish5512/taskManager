@@ -1,7 +1,7 @@
 import './App.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Profile from './components/profile';
-import {  useDispatch } from 'react-redux';
+import {  useDispatch,useSelector } from 'react-redux';
 import  getUsers  from './redux/actions/users';
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
     age: '',
   });
   const dispatch = useDispatch();
-  // const users = useSelector(state => state.users);
+  const users = useSelector(state => state.users);
   const handleSign = (e) => {
     if (e === 'in') {
       setSignInDiv(true);
@@ -59,19 +59,12 @@ const App = () => {
   const signIn = () => {
     console.log('Sign In Clicked');
     const { password, email } = screenData;
-    console.log({
-      password,
-      email,
-    });
     const req ={
       email , password
     }
     dispatch(
       getUsers(req,resp => {
-        if(resp)
-        {
-          console.log(resp)
-        }
+          console.log({resp})
       })
     )
    
@@ -87,6 +80,11 @@ const App = () => {
       name,
     });
   };
+
+  useEffect(() => {
+   console.log({users})
+  
+  }, [users])
 
   return (
     <div className="App">

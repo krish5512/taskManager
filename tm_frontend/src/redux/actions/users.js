@@ -3,9 +3,6 @@ import {
 } from "../constants";
 
 const getUsers = (payloadBody) => {
-    console.log (
-        {payloadBody
-        })
     return {
         type: GET_USERS_REQUEST,
         payload: payloadBody
