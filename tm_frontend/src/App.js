@@ -1,6 +1,13 @@
 import './App.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link
+// } from "react-router-dom";
 import Profile from './components/profile';
+import Header from './components/header';
 import { connect, useDispatch } from 'react-redux';
 import  getUsers  from './redux/actions/users';
 
@@ -62,11 +69,9 @@ const App = props => {
       email , password
     }
     dispatch(
-      getUsers(req,resp => {
-          console.log({resp})
-      })
+      getUsers(req)
     )
-   
+
   };
 
   const signUp = () => {
@@ -81,17 +86,19 @@ const App = props => {
   };
 
 
+
+  useEffect(() => {
+    if(props.user && Object.keys(props.user).length > 0)
+    {
+     console.log(props.user)
+    }
+  }, [props.user])
+
   return (
-    <div className="App">
-    <div className="App-header">
-      <h1> Task Manager App</h1>{' '}
-      
-      </div>
-      <h5  className="subheader">
-        Add your tasks at ease.{' '}
+         <div className="App">
+          <Header/>   
         <button className="button" onClick={() => handleSign('in')}> Sign In </button>{' '}
-        <button className="button" onClick={() => handleSign('up')}> Sign Up </button>{' '}
-      </h5>{' '}
+        <button className="button" onClick={() => handleSign('up')}> Sign Up </button>{' '}  
       {signInDiv && (
         <div>
           <div> Sign In </div>{' '}
@@ -172,6 +179,10 @@ const App = props => {
           <button className="button" onClick={signUp}> Create Account </button>{' '}
         </div>
       )}{' '}
+      
+
+
+
       {
         Object.keys(props.users).length > 0 && props.users.token !== '' ? <Profile currentUser = {props.users.user} /> : ''
       }
