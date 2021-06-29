@@ -21,9 +21,6 @@ const getApi = async req => {
 function* fetchUsers(action) {
     try {
         const  users  = yield call(getApi, action.payload);
-        console.log({
-            users
-        });
         yield put({
             type: GET_USERS_SUCCESS,
             users: users

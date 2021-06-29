@@ -6,16 +6,17 @@ const Profile = (currentUser) => {
   useEffect(() => {
     if(currentUser && Object.keys(currentUser).length > 0)
     {
-      setCurUser(currentUser);
+      console.log('inside useEffcet',currentUser)
+      setCurUser({...currentUser});
     }
   },[currentUser])
     return (
       <div>    
+       {curUser ?
+        <div>
         <p>Hello User</p>
-       {curUser ? <p>{curUser.name}</p> : ''}
-       {
-        console.log(curUser)
-      }
+        <p>{curUser.currentUser.name}</p>
+        </div> : ''}
       </div>
     );
   

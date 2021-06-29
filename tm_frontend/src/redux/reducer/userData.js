@@ -13,7 +13,6 @@ const userRootReducer = (state = initialState, action) => {
     } = action;
     switch (type) {
             case GET_USERS_SUCCESS:
-            console.log('line 16',state,action)
             return {
                 type: GET_USERS_SUCCESS,
                 users: action.users
