@@ -1,10 +1,10 @@
 import './App.css';
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 import Profile from './components/profile';
-import {  useDispatch,useSelector } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import  getUsers  from './redux/actions/users';
 
-const App = () => {
+const App = props => {
   const [signInDiv, setSignInDiv] = useState(false);
   const [signUpDiv, setSignUpDiv] = useState(false);
   const [screenData, setScreenData] = useState({
@@ -14,7 +14,6 @@ const App = () => {
     age: '',
   });
   const dispatch = useDispatch();
-  const users = useSelector(state => state.users);
   const handleSign = (e) => {
     if (e === 'in') {
       setSignInDiv(true);
@@ -81,10 +80,6 @@ const App = () => {
     });
   };
 
-  useEffect(() => {
-   console.log({users})
-  
-  }, [users])
 
   return (
     <div className="App">
@@ -177,9 +172,16 @@ const App = () => {
           <button className="button" onClick={signUp}> Create Account </button>{' '}
         </div>
       )}{' '}
-      <Profile />
+      {
+        Object.keys(props.users).length > 0 && props.users.token !== '' ? <Profile currentUser = {props.users.user} /> : ''
+      }
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = function(state) {
+  return {
+    users: state.userData.users,
+  }
+}
+export default connect(mapStateToProps)(App);
