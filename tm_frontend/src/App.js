@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {  useHistory} from "react-router-dom";
 import Header from './components/headers/header';
 import { connect, useDispatch } from 'react-redux';
-import  getUsers  from './redux/actions/users';
+import  usersObj  from './redux/actions/users';
 import SubHeader from './components/headers/subHeader';
 
 const App = props => {
@@ -65,7 +65,7 @@ const App = props => {
       email , password
     }
     dispatch(
-      getUsers(req)
+      usersObj.getUsers(req)
     )
     history.push("/profile");
   };
