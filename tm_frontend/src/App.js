@@ -1,12 +1,6 @@
 import './App.css';
-import { useState,useEffect } from 'react';
-import {
-  // BrowserRouter as Router,
-  // Switch,
-  // Route,
-  // Link
-  useHistory
-} from "react-router-dom";
+import { useState } from 'react';
+import {  useHistory} from "react-router-dom";
 import Header from './components/header';
 import { connect, useDispatch } from 'react-redux';
 import  getUsers  from './redux/actions/users';
@@ -72,7 +66,6 @@ const App = props => {
     dispatch(
       getUsers(req)
     )
-    console.log('history',history)
     history.push("/profile");
   };
 
@@ -86,15 +79,6 @@ const App = props => {
       name,
     });
   };
-
-
-
-  useEffect(() => {
-    if(props.user && Object.keys(props.user).length > 0)
-    {
-     console.log(props.user)
-    }
-  }, [props.user])
 
   return (
          <div className="App">
