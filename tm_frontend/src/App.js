@@ -1,17 +1,18 @@
 import './App.css';
 import { useState,useEffect } from 'react';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link
-// } from "react-router-dom";
-import Profile from './components/profile';
+import {
+  // BrowserRouter as Router,
+  // Switch,
+  // Route,
+  // Link
+  useHistory
+} from "react-router-dom";
 import Header from './components/header';
 import { connect, useDispatch } from 'react-redux';
 import  getUsers  from './redux/actions/users';
 
 const App = props => {
+  const history = useHistory();
   const [signInDiv, setSignInDiv] = useState(false);
   const [signUpDiv, setSignUpDiv] = useState(false);
   const [screenData, setScreenData] = useState({
@@ -71,7 +72,8 @@ const App = props => {
     dispatch(
       getUsers(req)
     )
-
+    console.log('history',history)
+    history.push("/profile");
   };
 
   const signUp = () => {
@@ -180,13 +182,7 @@ const App = props => {
         </div>
       )}{' '}
       
-
-
-
-      {
-        Object.keys(props.users).length > 0 && props.users.token !== '' ? <Profile currentUser = {props.users.user} /> : ''
-      }
-    </div>
+     </div>
   );
 };
 

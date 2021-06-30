@@ -1,25 +1,30 @@
 import { useState,useEffect } from 'react';
+import { connect } from 'react-redux';
 
-const Profile = (currentUser) => {
+const Profile = props => {
   const [curUser,setCurUser] = useState({});
 
   useEffect(() => {
-    if(currentUser && Object.keys(currentUser).length > 0)
+    if(props.users && Object.keys(props.users).length > 0)
     {
-      console.log('inside useEffcet',currentUser)
-      setCurUser({...currentUser});
+      setCurUser({...props.users});
     }
-  },[currentUser])
+  },[props.users])
     return (
       <div>    
        {curUser ?
         <div>
         <p>Hello User</p>
-        <p>{curUser.currentUser.name}</p>
+        <p>{curUser.user.name}</p>
         </div> : ''}
       </div>
     );
   
 }
 
-export default Profile;
+const mapStateToProps = function(state) {
+  return {
+    users: state.userData.users,
+  }
+}
+export default connect(mapStateToProps)(Profile);
