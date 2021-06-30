@@ -1,9 +1,10 @@
 import './App.css';
 import { useState } from 'react';
 import {  useHistory} from "react-router-dom";
-import Header from './components/header';
+import Header from './components/headers/header';
 import { connect, useDispatch } from 'react-redux';
 import  getUsers  from './redux/actions/users';
+import SubHeader from './components/headers/subHeader';
 
 const App = props => {
   const history = useHistory();
@@ -83,6 +84,7 @@ const App = props => {
   return (
          <div className="App">
           <Header/>   
+          <SubHeader />
         <button className="button" onClick={() => handleSign('in')}> Sign In </button>{' '}
         <button className="button" onClick={() => handleSign('up')}> Sign Up </button>{' '}  
       {signInDiv && (

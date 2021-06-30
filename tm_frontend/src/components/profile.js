@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
 import { connect } from 'react-redux';
-
+import Header from './headers/header';
 const Profile = props => {
   const [curUser,setCurUser] = useState({});
 
@@ -14,8 +14,10 @@ const Profile = props => {
       <div>    
        {curUser ?
         <div>
+        <Header />
         <p>Hello User</p>
-        <p>{curUser.user.name}</p>
+        <button>Logout</button>
+     {curUser && curUser.user ?    <p>{curUser.user.name}</p> : alert('User not logged in')}
         </div> : ''}
       </div>
     );
