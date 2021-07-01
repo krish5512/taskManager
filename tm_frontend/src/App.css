@@ -18,7 +18,12 @@
   margin-bottom: 16px;
 }
 
-
+.userDiv
+{
+  width: 800px;
+  height: 400px;
+  padding-left: 150px;
+}
 .label {
   display: inline-block;
   width: 100px;

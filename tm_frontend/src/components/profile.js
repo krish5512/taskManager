@@ -27,14 +27,19 @@ const Profile = props => {
     return (
       <div>    
       <Header />
-      <p>Hello User</p>
-         <button onClick={() => signoutuser()}>Logout</button>
+         <button className="button" onClick={() => signoutuser()}>Logout</button>
        {curUser ?
-        <div>    
-     {curUser && curUser.user ? <p>Name : {curUser.user.name}</p> : ''}
-     {curUser && curUser.user ? <p>Email : {curUser.user.email}</p> : ''}
-     {curUser && curUser.user ? <p>Age : {curUser.user.age}</p> : ''}
-
+        <div className="userDiv">    
+        <label className="label">Welcome User</label>
+        <br/>
+        {curUser && curUser.user ? <label className="label">Name :
+         <p className="input">{curUser.user.name}</p></label> : ''}
+         <br/>
+        {curUser && curUser.user ? <label className="label">Email :
+        <p className="input">{curUser.user.email}</p> </label> : ''}
+        <br/>
+        {curUser && curUser.user ? <label className="label">Age :
+        <p className="input">{curUser.user.age}</p></label> : ''}
         </div> : 'Loading....'}
      
       </div>
