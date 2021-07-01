@@ -4,7 +4,7 @@ import {
     takeEvery
 } from 'redux-saga/effects'
 
-import { GET_USERS_SUCCESS,LOGOUT_USERS } from '../constants';
+import { GET_USERS_SUCCESS, LOGOUT_USERS_FAILED, LOGOUT_USERS_SUCCESS } from '../constants';
 
 const getApi = async req => {
     const url = '/users/login';
@@ -19,14 +19,14 @@ const getApi = async req => {
 }
 
 const logoutCurrUser = async () => {
+    console.log('LOgout HIt')
     const url = '/users/logout';
-    const body = await fetch(url, {
+    await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
     })
-    return body.json();
 }
 function* fetchUsers(action) {
     try {
@@ -42,16 +42,17 @@ function* fetchUsers(action) {
         });
     }
 }
-function* logoutUser(action) {
+function* logoutUser() {
     try {
-        yield call(logoutCurrUser, action.payload);
+        yield call(logoutCurrUser);
         yield put({
-            type: LOGOUT_USERS,
+            type: LOGOUT_USERS_SUCCESS,
             users: {}
         });
     } catch (e) {
+        console.log({e})
         yield put({
-            type: LOGOUT_USERS,
+            type: LOGOUT_USERS_FAILED,
             users: e
         });
     }
@@ -59,7 +60,7 @@ function* logoutUser(action) {
 
 function* userSaga() {
     yield takeEvery('GET_USERS_REQUEST', fetchUsers);
-    yield takeEvery('GET_USERS_REQUEST', logoutUser);
+    yield takeEvery('LOGOUT_USERS_REQUEST', logoutUser);
 
 }
 

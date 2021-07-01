@@ -1,7 +1,8 @@
 import {
     GET_USERS_SUCCESS,
     GET_USERS_FAILED,
-    LOGOUT_USERS,
+    LOGOUT_USERS_SUCCESS,
+    LOGOUT_USERS_FAILED,
 } from '../constants';
 
 const initialState = {
@@ -19,16 +20,20 @@ const userRootReducer = (state = initialState, action) => {
                 users: action.users
             }
             case GET_USERS_FAILED:
-                console.log({action})
                 return {
                     type: GET_USERS_FAILED,
-                    users: []
+                    users: {}
                 }
-            case LOGOUT_USERS : 
-            return {
-                type : LOGOUT_USERS,
+            case LOGOUT_USERS_SUCCESS : 
+               return {
+                type : LOGOUT_USERS_SUCCESS,
                 users : {}
-            }
+              }
+              case LOGOUT_USERS_FAILED : 
+              return {
+               type : LOGOUT_USERS_FAILED,
+               users : {}
+             }
             default: return state
     }
 }
