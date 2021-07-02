@@ -8,6 +8,7 @@
   text-decoration: none;
   font-size: 40px;
   margin-bottom: 16px;
+  text-align: center;
 }
 
 .subheader {
@@ -15,15 +16,28 @@
   margin-right: 16px;
   text-decoration: none;
   font-size: 20px;
+  text-align: center;
   margin-bottom: 16px;
 }
 
 .userDiv
 {
-  width: 800px;
-  height: 400px;
-  padding-left: 150px;
+  width: 400px;
+  height: 200px;
+  margin-left: 150px;
+  background-color: rgb(212, 196, 196);
+  border-radius: 0.54em;
+  border : 0.2rem dotted
 }
+
+.text
+{
+  text-align: left;
+  font-weight: 600;
+  padding-left: 15px;
+  font-family: 'Lato', sans-serif;
+}
+
 .label {
   display: inline-block;
   width: 100px;
@@ -52,8 +66,6 @@
   margin-bottom: 8px;
   transition: all 0.3s;
 }
-
-
 
 .button {
   width: 120px;

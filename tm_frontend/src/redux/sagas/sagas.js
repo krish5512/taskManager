@@ -30,7 +30,6 @@ const logoutCurrUser = async () => {
     })
 }
 const createUserApiCall = async req => {
-    console.log(req)
     const url = '/users';
     const body = await fetch(url, {
         method: 'POST',
@@ -39,10 +38,8 @@ const createUserApiCall = async req => {
         },
         body: JSON.stringify(req),
     })
-    console.log(body)
     return body.json();
 }
-
 
 // SAGAS
 function* createUserAccount(action) {
