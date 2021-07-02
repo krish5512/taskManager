@@ -100,7 +100,7 @@ const App = props => {
         <button className="button" onClick={() => handleSign('up')}> Sign Up </button>{' '}  
       {signInDiv && (
         <div>
-          <div> Sign In </div>{' '}
+        
           <br/>
           <div className="loginDiv">
           <label className="label">
@@ -130,7 +130,7 @@ const App = props => {
       )}{' '}
       {signUpDiv && (
         <div>
-          <div> Sign Up </div>{' '}
+          
           <br/>
           <div>
            <label className="label">Name:{' '}</label>
