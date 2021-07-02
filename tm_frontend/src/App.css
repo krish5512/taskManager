@@ -1,9 +1,13 @@
 .App {
+  margin: 0;
   text-align: center;
+  background-image: linear-gradient(rgb(195, 190, 241), white);
+  width: 100%;
+  height: 100%;
 }
 
 .App-header {
-  color: #888888;
+  color: #1a0e0e;
   margin-right: 16px;
   text-decoration: none;
   font-size: 40px;
