@@ -22,9 +22,22 @@
 
 .userDiv
 {
+  display: inline-block;
   width: 400px;
   height: 200px;
   margin-left: 150px;
+  margin-right: 50px;
+  background-color: rgb(212, 196, 196);
+  border-radius: 0.54em;
+  border : 0.2rem dotted
+}
+
+.taskDiv
+{
+  display: inline-block;
+  width: 400px;
+  height: auto;
+  margin-right: 150px;
   background-color: rgb(212, 196, 196);
   border-radius: 0.54em;
   border : 0.2rem dotted

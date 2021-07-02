@@ -4,7 +4,7 @@ import { useHistory} from "react-router-dom";
 import logoutUsers from '../redux/actions/logout';
 import { connect, useDispatch } from 'react-redux';
 import '../App.css';
-
+import Task from './tasks/tasks';
 const Profile = props => {
   const history = useHistory();
   const [curUser,setCurUser] = useState({});
@@ -36,14 +36,15 @@ const Profile = props => {
         <label className="text">Welcome User</label>
         <br/>
         {curUser && curUser.user ?
-         <p className="text"> Name :{curUser.user.name}</p> : ''}
+         <p className="text"> Name : {curUser.user.name}</p> : ''}
        
         {curUser && curUser.user ?
-        <p className="text">Email :{curUser.user.email}</p> : ''}
+        <p className="text">Email : {curUser.user.email}</p> : ''}
         
         {curUser && curUser.user ? 
-        <p className="text">Age :{curUser.user.age}</p> : ''}
+        <p className="text">Age : {curUser.user.age}</p> : ''}
         </div> : 'Loading....'}
+        <Task />
       </div>
     );
   
