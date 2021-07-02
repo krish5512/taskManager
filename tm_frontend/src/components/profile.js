@@ -3,6 +3,7 @@ import Header from './headers/header';
 import { useHistory} from "react-router-dom";
 import logoutUsers from '../redux/actions/logout';
 import { connect, useDispatch } from 'react-redux';
+import '../App.css';
 
 const Profile = props => {
   const history = useHistory();

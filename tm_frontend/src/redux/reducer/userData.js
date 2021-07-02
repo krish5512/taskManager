@@ -3,6 +3,8 @@ import {
     GET_USERS_FAILED,
     LOGOUT_USERS_SUCCESS,
     LOGOUT_USERS_FAILED,
+    CREATE_USERS_SUCCESS,
+    CREATE_USERS_FAILED,
 } from '../constants';
 
 const initialState = {
@@ -34,6 +36,16 @@ const userRootReducer = (state = initialState, action) => {
                type : LOGOUT_USERS_FAILED,
                users : {}
              }
+             case CREATE_USERS_SUCCESS : 
+                return {
+                    type : CREATE_USERS_SUCCESS,
+                    users : action.users
+                }
+            case CREATE_USERS_FAILED : 
+            return {
+                type : CREATE_USERS_FAILED,
+                users : {}
+            }
             default: return state
     }
 }

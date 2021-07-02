@@ -5,6 +5,7 @@ import Header from './components/headers/header';
 import { connect, useDispatch } from 'react-redux';
 import  getUsers  from './redux/actions/users';
 import SubHeader from './components/headers/subHeader';
+import createUsers from './redux/actions/createUser';
 
 const App = props => {
   const history = useHistory();
@@ -79,6 +80,16 @@ const App = props => {
       age,
       name,
     });
+    const req ={
+      password,
+      email,
+      age,
+      name,
+    }
+    dispatch(
+      createUsers(req)
+    )
+    history.push("/profile");
   };
 
   return (
