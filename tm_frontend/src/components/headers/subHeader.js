@@ -3,7 +3,7 @@ import '../../App.css';
 const SubHeader =() => {
     return(
         <h5  className="subheader">
-          Add your tasks at ease.{' '}
+          Add your tasks at ease....{' '}
           </h5>
     )
 }
