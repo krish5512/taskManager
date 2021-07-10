@@ -7,6 +7,11 @@ const {
     findByIdAndUpdate
 } = require('../models/user');
 
+const multer = require('multer');
+const upload = multer({
+  dest: 'avatars',
+});
+
 router.get('/users/me', auth, async (req, res) => {
     // try {
     //     const users = await User.find({});
@@ -90,6 +95,10 @@ router.patch('/users/me', auth, async (req, res) => {
             error: 'Invalid Update'
         })
     }
+})
+
+router.post('/users/avatar',upload.single('avatar'),(req,res) => {
+    res.status(201).send()
 })
 // Delete the profile of you own
 router.delete('/users/me', auth, async (req, res) => {
